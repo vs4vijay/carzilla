@@ -1,0 +1,12 @@
+<div id="app" ng-controller="AppCtrl">
+
+  <!-- navbar -->
+  <div id="header" ng-include="'app/common/header.html'" style="height: 70px"></div>
+
+  <!-- page content -->
+  <div ui-view style="height: calc(100% - 70px);"></div>
+
+  <!-- footer -->
+  <div id="footer"></div>
+
+</div>
