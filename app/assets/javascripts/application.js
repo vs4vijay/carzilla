@@ -11,4 +11,10 @@
 // about supported directives.
 //
 //= require jquery
+//= require bootstrap
+//= require angular
+//= require angular-route
+//= require angular-resource
+//= require angular-rails-templates
+//= require angular-ui/angular-ui-router
 //= require_tree .

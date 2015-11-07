@@ -21,10 +21,15 @@ gem 'jquery-rails'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+
 gem 'mongoid' #, '~> 4', github: 'mongoid/mongoid'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 
+gem 'sprockets-rails'
+
+gem 'angularjs-rails', '~> 1.4', '>= 1.4.7'
+gem 'angular-rails-templates', '~> 0.2.0'
 
 
 # Use ActiveModel has_secure_password

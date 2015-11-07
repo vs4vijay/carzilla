@@ -15,3 +15,9 @@ A CRUD App for Luxury Car Sharing...
  * Add methods/actions on controller
  * Add route to routes.rb `resources :cars`
  * Add frontend using AngularJS and Bootstrap
+    * Add Bootstrap gem `bootstrap-sass`
+      * Include following code to `application.css` and rename it to `application.scss`
+        * `@import "bootstrap-sprockets";@import "bootstrap";`
+      * Include following code to `application.js`
+        * `//= require bootstrap`
+    * Add `ui-router`
