@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # root 'application#index'
+  root 'application#index'
 
   scope '/api/v1' do
     resources :cars
