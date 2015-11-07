@@ -23,6 +23,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'mongoid' #, '~> 4', github: 'mongoid/mongoid'
 
+gem 'bootstrap-sass', '~> 3.3.5'
+
 
 
 # Use ActiveModel has_secure_password
