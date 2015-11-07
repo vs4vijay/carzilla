@@ -2,13 +2,13 @@ class CarsController < ApplicationController
 
   def index
     # Car.create({model: :Swift})
-    @cars = Car.all
+    @cars = Car.all.reverse
     render json: @cars
   end
 
   def create
-    @car = Car.create(params)
-    render json: @car.attributes
+    @car = Car.create(car_params)
+    render json: @car
   end
 
   def show
@@ -16,18 +16,19 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.save_existing(params[:id], params[:car])
-    render json: @car.attributes
+    @car = Car.find(params[:_id]).update_attributes(car_params)
+    render json: car_params
   end
 
   def destroy
-
+    Car.find(params[:id]).delete
+    render json: {deleted: true}
   end
 
   private
 
   def car_params
-    params.permit(:driver, :model, :year, :desc, {:_id => []}, :created_at, :updated_at)
+    params.permit(:driver, :model, :year, :desc, {:_id => []}, :c_at, :u_at)
   end
 
 end

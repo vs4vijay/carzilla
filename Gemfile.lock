@@ -41,6 +41,8 @@ GEM
       sprockets (~> 2)
       tilt
     angularjs-rails (1.4.7)
+    arcrud (1.0.0)
+      rails (~> 4.0)
     arel (6.0.3)
     autoprefixer-rails (6.1.0.1)
       execjs
@@ -153,6 +155,7 @@ PLATFORMS
 DEPENDENCIES
   angular-rails-templates (~> 0.2.0)
   angularjs-rails (~> 1.4, >= 1.4.7)
+  arcrud
   bootstrap-sass (~> 3.3.5)
   byebug
   jquery-rails

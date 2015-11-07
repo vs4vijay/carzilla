@@ -7,4 +7,4 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-Car.create({model: :Swift})
+Car.create({driver: :viz, model: :swift})

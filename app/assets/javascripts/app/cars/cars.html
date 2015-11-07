@@ -1,0 +1,127 @@
+<div class="container" name="CarsForm">
+
+    <legend> Cars </legend>
+
+    <button type="button" class="btn btn-primary" tooltip="New Cars" style="margin-top: 10px;margin-bottom: 10px;" data-toggle="modal" data-target="#carModal" ng-click="resetCar()">
+      Add Car
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="carModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel" ng-hide="carModel._id">
+              New Car
+            </h4>
+            <h4 class="modal-title" id="myModalLabel" ng-show="carModel._id">
+              {{carModel.name}}
+            </h4>
+          </div>
+          <div class="modal-body">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="driver"> Driver </label>
+                  <input type="text" class="form-control" id="driver" ng-model="carModel.driver" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="model"> Model </label>
+                  <input type="text" class="form-control" id="model" ng-model="carModel.model" />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="year"> Year </label>
+                  <input type="text" class="form-control" id="year" ng-model="carModel.year" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label for="comment"> Description </label>
+                  <textarea class="form-control" id="desc" ng-model="carModel.desc"></textarea>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-success" ng-show="carModel._id" ng-click="updateCar(carModel)"> <b>Save</b> </button>
+            <button class="btn btn-success" ng-hide="carModel._id" ng-click="addCar(carModel)"> <b>Add</b> </button>
+            <button class="btn btn-default" data-dismiss="modal"><b>Cancel</b></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>
+            Driver
+          </th>
+          <th>
+            Model
+          </th>
+          <th>
+            Year
+          </th>
+          <th>
+            Description
+          </th>
+          <th>
+            Action
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="car in carsList">
+          <td class="col-md-2">
+            <b>{{car.driver}}</b>
+          </td>
+          <td class="col-md-2">
+            {{car.model}}
+          </td>
+          <td class="col-md-1">
+            {{car.year}}
+          </td>
+          <td class="col-md-3">
+            {{car.desc}}
+          </td>
+          <td class="col-md-3">
+            <button type="button" class="btn btn-link" ng-click="loadCarEditForm(car, $index)" ng-hide="confirmDeletion">
+              Edit
+            </button>
+            <button type="button" class="btn btn-link pull-right" ng-click="confirmDeletion = true" tooltip="Delete Car" ng-hide="confirmDeletion">
+              Delete
+            </button>
+            <div class="row" ng-show="confirmDeletion">
+              <div class="btn text-center col-md-6"><b>Are You Sure?</b></div>
+              <div class="btn btn-group col-md-6 pull-right">
+                <button type="button" class="btn btn-link btn-sm" ng-click="deleteCar(car._id, $index)" tooltip="Delete Car">
+                  Delete
+                </button>
+                <button type="button" class="btn btn-link btn-sm" ng-click="confirmDeletion = false" tooltip="Cancel">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+</div>

@@ -31,6 +31,8 @@ gem 'sprockets-rails'
 gem 'angularjs-rails', '~> 1.4', '>= 1.4.7'
 gem 'angular-rails-templates', '~> 0.2.0'
 
+gem 'arcrud'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

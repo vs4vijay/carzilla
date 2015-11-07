@@ -17,4 +17,5 @@
 //= require angular-resource
 //= require angular-rails-templates
 //= require angular-ui/angular-ui-router
+//= require toaster
 //= require_tree .
