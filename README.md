@@ -14,3 +14,4 @@ A CRUD App for Luxury Car Sharing...
  * `rails g controller cars`
  * Add methods/actions on controller
  * Add route to routes.rb `resources :cars`
+ * Add frontend using AngularJS and Bootstrap
