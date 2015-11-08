@@ -12,13 +12,14 @@ angular.module('app').controller('RegistrationCtrl', ['$scope', '$location', '$r
 		$auth.submitRegistration($scope.registrationModel)
 			.then(function(resp) {
 				// handle success response
-				//toaster.pop('success', 'Registration', 'A email has been sent to you for confirmation.');
-				$scope.loginUser();
+				toaster.pop('success', 'Registration', 'A email has been sent to you for confirmation.');
+				//$scope.loginUser();
+				$scope.registrationModel = {};
 			})
-			.catch(function(resp) {
-				// handle error response
-				toaster.pop('error', 'Error', resp.data.errors.full_messages);
-			});
+			// .catch(function(resp) {
+			// 	// handle error response
+			// 	toaster.pop('error', 'Error', resp.data.errors.full_messages);
+			// });
 	};
 
 	$scope.loginUser = function() {
@@ -26,12 +27,13 @@ angular.module('app').controller('RegistrationCtrl', ['$scope', '$location', '$r
 			.then(function(resp) {
 				// handle success response
 				toaster.pop('success', 'Login', 'User logged in successfully.');
-				$location.path('/dashboard');
+				$location.path('/cars');
+				$scope.registrationModel = {}
 			})
-			.catch(function(resp) {
-				// handle error response
-				toaster.pop('error', 'Error', resp.errors.join(','));
-			});
+			// .catch(function(resp) {
+			// 	// handle error response
+			// 	toaster.pop('error', 'Error', resp.errors.join(','));
+			// });
 	};
 
 	$scope.validateUser = function() {
@@ -40,10 +42,10 @@ angular.module('app').controller('RegistrationCtrl', ['$scope', '$location', '$r
 				// handle success response
 				toaster.pop('success', 'Validate User', resp);
 			})
-			.catch(function(resp) {
-				// handle error response
-				toaster.pop('error', 'Error', resp.errors.join(','));
-			});
+			// .catch(function(resp) {
+			// 	// handle error response
+			// 	toaster.pop('error', 'Error', resp.errors.join(','));
+			// });
 	};
 
 	$scope.resetPassword = function() {
@@ -52,22 +54,22 @@ angular.module('app').controller('RegistrationCtrl', ['$scope', '$location', '$r
 				// handle success response
 				toaster.pop('success', 'Reset Password', resp.data.message);
 			})
-			.catch(function(resp) {
-				// handle error response
-				toaster.pop('error', 'Error', resp.data.errors.join(','));
-			});
+			// .catch(function(resp) {
+			// 	// handle error response
+			// 	toaster.pop('error', 'Error', resp.data.errors.join(','));
+			// });
 	};
 
 	$scope.updatePassword = function() {
 		$auth.updatePassword($scope.registrationModel)
 			.then(function(resp) {
 				toaster.pop('success', 'Password Updated', resp.data.data.message);
-				$location.path('/dashboard');
+				$location.path('/cars');
 			})
-			.catch(function(resp) {
-				// handle error response
-				toaster.pop('error', 'Error', resp.data.errors.join(','));
-			});
+			// .catch(function(resp) {
+			// 	// handle error response
+			// 	toaster.pop('error', 'Error', resp.data.errors.join(','));
+			// });
 	};
 
 	$scope.signOut = function() {
@@ -77,15 +79,10 @@ angular.module('app').controller('RegistrationCtrl', ['$scope', '$location', '$r
 				toaster.pop('success', 'Sign Out', resp.data.message);
 				$location.path('/registration');
 			})
-			.catch(function(resp) {
-				// handle error response
-				toaster.pop('error', 'Error', resp.data.errors.join(','));
-			});
-	};
-
-	$scope.testCall = function() {
-		var Car = $resource('/api/v1/cars');
-		$scope.cars = Car.get();
+			// .catch(function(resp) {
+			// 	// handle error response
+			// 	toaster.pop('error', 'Error', resp.data.errors.join(','));
+			// });
 	};
 
 }]);

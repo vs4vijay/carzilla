@@ -6,26 +6,33 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$authProvi
 
 	$authProvider.configure({
 		apiUrl: '.',
-		confirmationSuccessUrl: location.origin + '/#/dashboard',
+		confirmationSuccessUrl: location.origin + '/#/cars',
 		passwordResetSuccessUrl: location.origin + '/#/reset-password'
 	});
 
 	$stateProvider
 		.state('home', {
 			url: '/',
-			templateUrl: 'app/dashboard/dashboard.html'
 		})
 		.state('registration', {
 			url: '/registration',
 			controller: 'RegistrationCtrl',
 			templateUrl: 'app/registration/views/registration.html'
 		})
-		.state('dashboard', {
-			url: '/dashboard',
-			controller: 'DashboardCtrl',
-			templateUrl: 'app/dashboard/dashboard.html'
+		.state('secure', {
+			template: '<ui-view>',
+			resolve: {
+				auth: ['$auth', function($auth) {
+					return $auth.validateUser();
+				}]
+			}
 		})
-		.state('cars', {
+		.state('secure.reset-password', {
+			url: '/reset-password',
+			controller: 'RegistrationCtrl',
+			templateUrl: 'app/registration/views/reset-password.html'
+		})
+		.state('secure.cars', {
       url: '/cars',
       controller: 'CarsCtrl',
       templateUrl: 'app/cars/cars.html',
@@ -36,24 +43,48 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$authProvi
       }
     });
 
-		$httpProvider.interceptors.push(function(toaster) {
+		$httpProvider.interceptors.push(function($q, toaster) {
 	    return {
-	      responseError: function(res) {
-					if(res.status == 401) {
-						// in case of unathorised user
-						toaster.pop('error', 'Error', res.data.errors.join('\n'));
+	      responseError: function(rejection) {
+					if(rejection.status == 401) {
+						// in case of unauthorised user
 					}
-	        return res;
+					var errors = rejection.data.errors.full_messages || rejection.data.errors;
+					toaster.pop('error', 'Error', errors.join(';\n'));
+	        return $q.reject(rejection);
 	      }
 	    };
 	  });
 }]);
 
 
-app.controller('AppCtrl', ['$scope', '$location', '$rootScope', function ($scope, $location, $rootScope) {
+app.controller('AppCtrl', ['$scope', '$location', '$rootScope', '$auth', 'toaster', function ($scope, $location, $rootScope, $auth, toaster) {
+
+	var validateUser = function() {
+		$auth.validateUser().then(function(resp) {
+	    $scope.userInfo = resp;
+	  });
+	};
+
+	validateUser();
+
+  $rootScope.$on('auth:login-success', function(event) {
+    validateUser();
+  });
 
 	$scope.goTo = function(url) {
 		$location.path(url);
+	};
+
+	$scope.signOut = function() {
+		$auth.signOut()
+			.then(function(resp) {
+				toaster.pop('success', 'Sign Out', 'Successfully logged out.');
+				$location.path('/registration');
+			})
+			.catch(function(resp) {
+				$location.path('/registration');
+			});
 	};
 
 }]);
