@@ -3,7 +3,7 @@
 A CRUD App for Luxury Car Sharing...
 
 ## Installation
- * 
+ *
 
 
 ## Development
@@ -31,3 +31,4 @@ A CRUD App for Luxury Car Sharing...
         //= require angular-rails-templates
         //= require angular-ui/angular-ui-router`
     * Add `ui-router`
+  * Add token based authentication via 'devise_token_auth'

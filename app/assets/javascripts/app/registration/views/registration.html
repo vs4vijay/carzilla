@@ -1,0 +1,206 @@
+<div class="container">
+
+  <div class="row" ng-show="registrationViewMode == 'SIGNIN'">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form name="SignInForm" novalidate>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <h2> Please Sign In </h2>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <p class="pull-right" style="margin-top: 30px;">
+              <a href="" ng-click="registrationViewMode='SIGNUP'"> Dont have account? Sign up here </a>
+            </p>
+          </div>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="form-group" >
+          <input type="email" name="email" ng-model="registrationModel.email" class="form-control input-lg" placeholder="Email Address" tabindex="1" required>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" ng-model="registrationModel.password" class="form-control input-lg" placeholder="Password" tabindex="2" required>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <input type="submit" ng-click="loginUser()" class="btn btn-success btn-block btn-lg" value="Sign In" />
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <p class="pull-right">
+              <a href="" ng-click="registrationViewMode='FORGOTPWD'">Forgot password?</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="row hide">
+          <div class="col-xs-12 col-md-4">
+            <button type="button" ng-click="validateUser()" class="btn btn-info btn-lg">Validate User</button>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <button type="button" ng-click="signOut()" class="btn btn-warning btn-lg">Sign Out</button>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <button type="button" ng-click="testCall()" class="btn btn-danger btn-lg">Test Call</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-show="registrationViewMode == 'FORGOTPWD'">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form role="form" on-navigate-away-strategy='none'>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <h2> Forgot Password? </h2>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <p class="pull-right" style="margin-top: 30px;">
+              <a href="" ng-click="registrationViewMode='SIGNIN'">Sign In here</a>
+            </p>
+          </div>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="form-group">
+          <input type="email" name="email" ng-model="registrationModel.email" class="form-control input-lg" placeholder="Email Address" tabindex="1">
+        </div>
+
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <input type="submit" ng-click="resetPassword(registrationModel)" class="btn btn-info btn-block btn-lg" value="Reset password" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-show="registrationViewMode == 'RESETPWD'">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form role="form" on-navigate-away-strategy='none'>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <h2> Reset password </h2>
+          </div>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="form-group">
+          <input type="password" name="password" ng-model="registrationModel.password" class="form-control input-lg" placeholder="Password" tabindex="2">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password_confirmation" ng-model="registrationModel.password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="2">
+        </div>
+
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <input type="submit" ng-click="resetPassword(registrationModel)" class="btn btn-info btn-block btn-lg" value="Reset password" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-show="registrationViewMode == 'SIGNUP'">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+      <form role="form" on-navigate-away-strategy='none'>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <h2> Please Sign Up </h2>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <p class="pull-right" style="margin-top: 30px;">
+              <a href="" ng-click="registrationViewMode='SIGNIN'">Already have account?</a>
+            </p>
+          </div>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="text" name="first_name" ng-model="registrationModel.first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="text" name="last_name" ng-model="registrationModel.last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" ng-model="registrationModel.email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="password" name="password" ng-model="registrationModel.password" class="form-control input-lg" placeholder="Password" tabindex="5">
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="form-group">
+              <input type="password" name="password_confirmation" ng-model="registrationModel.password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="checkbox" name="tos" ng-model="registrationModel.is_terms_condition_checked" class="" tabindex="6">
+            I agree to abide by the following <a href="" data-toggle="modal" data-target="#terms_condition_model">terms of conditions</a> regarding the utilization of this Engagement Portal.
+          </input>
+        </div>
+
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <input type="submit" ng-click="registerUser(registrationModel)" class="btn btn-primary btn-block btn-lg" value="Register" />
+          </div>
+          <div class="col-xs-12 col-sm-6">
+            <p class="pull-right">
+              <a href="" ng-click="registrationViewMode='FORGOTPWD'">Forgot password?</a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal fade" role="dialog" id="terms_condition_model" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="gridSystemModalLabel">Terms of conditions</h4>
+        </div>
+        <div class="modal-body">
+
+          The use of this website is subject to the following terms of use:
+
+          The content of the pages of this website is for your general information and use only. It is subject to change without notice.
+          This website uses cookies to monitor browsing preferences. If you do allow cookies to be used, the following personal information may be stored by us for use by third parties: [insert list of information].
+          Neither we nor any third parties provide any warranty or guarantee as to the accuracy, timeliness, performance, completeness or suitability of the information and materials found or offered on this website for any particular purpose. You acknowledge that such information and materials may contain inaccuracies or errors and we expressly exclude liability for any such inaccuracies or errors to the fullest extent permitted by law.
+          Your use of any information or materials on this website is entirely at your own risk, for which we shall not be liable. It shall be your own responsibility to ensure that any products, services or information available through this website meet your specific requirements.
+          This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited other than in accordance with the copyright notice, which forms part of these terms and conditions.
+          All trade marks reproduced in this website which are not the property of, or licensed to, the operator are acknowledged on the website.
+          Unauthorised use of this website may give rise to a claim for damages and/or be a criminal offence.
+          From time to time this website may also include links to other websites. These links are provided for your convenience to provide further information. They do not signify that we endorse the website(s). We have no responsibility for the content of the linked website(s).
+          Your use of this website and any dispute arising out of such use of the website is subject to the laws of England, Northern Ireland, Scotland and Wales.
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary"> Okay </button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

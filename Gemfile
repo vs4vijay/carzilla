@@ -33,6 +33,10 @@ gem 'angular-rails-templates', '~> 0.2.0'
 
 gem 'arcrud'
 
+# gem 'devise'
+gem 'devise_token_auth', github: 'ybian/devise_token_auth', branch: 'mongoid'
+gem 'omniauth-github', github: 'intridea/omniauth-github'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
