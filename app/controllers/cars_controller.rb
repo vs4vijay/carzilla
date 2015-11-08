@@ -1,7 +1,6 @@
 class CarsController < ApplicationController
 
   def index
-    # Car.create({model: :Swift})
     @cars = Car.all.reverse
     render json: @cars
   end

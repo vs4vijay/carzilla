@@ -6,4 +6,6 @@ Rails.application.routes.draw do
     resources :cars
   end
 
+  match '*path', to: 'application#error_occurred', via: :all
+
 end

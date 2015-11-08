@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.router', 'template
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
-		$urlRouterProvider.otherwise('/dashboard');
+		$urlRouterProvider.otherwise('/cars');
 
   	$stateProvider
 			.state('home', {
