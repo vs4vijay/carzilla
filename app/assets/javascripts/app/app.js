@@ -43,7 +43,7 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$authProvi
       }
     });
 
-		$httpProvider.interceptors.push(function($q, toaster) {
+		$httpProvider.interceptors.push(['$q', 'toaster', function($q, toaster) {
 	    return {
 	      responseError: function(rejection) {
 					if(rejection.status == 401) {
@@ -54,7 +54,7 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$authProvi
 	        return $q.reject(rejection);
 	      }
 	    };
-	  });
+	  }]);
 }]);
 
 
