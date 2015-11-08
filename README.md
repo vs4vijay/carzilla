@@ -1,6 +1,8 @@
 # CarZilla
 A CRUD App for Car Ride Sharing...
 
+Deployed at http://carzilla.mybluemix.net/
+
 CarZilla app which allows users to perform Create/Read/Update/Delete operations on Car Entity. It uses OAuth 2 with Devise for authentication, A access_token is passed in the Header of every HTTP request. The API end point is /api/v1/cars. It returns response is in JSON format. The database that I have used is MongoDB for storing Users as well as Cars.
 
 **Technology wise**, I have used Restful and MVC architectures for developing App. The Model(M) and Controller(C) part in Rails and View(V) part is in Angular. So we can easily decouple our consumer application from producers if required. Every request is authenticated on the server side using `devise_token_auth` gem, Which checks for access_token in HTTP Header.
