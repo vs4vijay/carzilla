@@ -1,13 +1,24 @@
-var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.router', 'templates', 'toaster']);
+var app = angular.module('app', ['ngRoute', 'ngResource', 'ui.router', 'ng-token-auth', 'templates', 'toaster', 'ngAnimate']);
 
-app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', function($stateProvider, $httpProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $httpProvider, $urlRouterProvider, $authProvider) {
 
-	$urlRouterProvider.otherwise('/cars');
+	$urlRouterProvider.otherwise('/registration');
+
+	$authProvider.configure({
+		apiUrl: '.',
+		confirmationSuccessUrl: location.origin + '/#/dashboard',
+		passwordResetSuccessUrl: location.origin + '/#/reset-password'
+	});
 
 	$stateProvider
 		.state('home', {
 			url: '/',
 			templateUrl: 'app/dashboard/dashboard.html'
+		})
+		.state('registration', {
+			url: '/registration',
+			controller: 'RegistrationCtrl',
+			templateUrl: 'app/registration/views/registration.html'
 		})
 		.state('dashboard', {
 			url: '/dashboard',
@@ -25,10 +36,13 @@ app.config(['$stateProvider', '$httpProvider', '$urlRouterProvider', function($s
       }
     });
 
-		$httpProvider.interceptors.push(function() {
+		$httpProvider.interceptors.push(function(toaster) {
 	    return {
 	      responseError: function(res) {
-					console.log('res', res);
+					if(res.status == 401) {
+						// in case of unathorised user
+						toaster.pop('error', 'Error', res.data.errors.join('\n'));
+					}
 	        return res;
 	      }
 	    };

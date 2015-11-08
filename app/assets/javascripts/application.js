@@ -15,7 +15,10 @@
 //= require angular
 //= require angular-route
 //= require angular-resource
+//= require angular-animate
 //= require angular-rails-templates
 //= require angular-ui/angular-ui-router
 //= require toaster
+//= require angular-cookie.min
+//= require ng-token-auth
 //= require_tree .
